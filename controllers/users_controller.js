@@ -7,7 +7,7 @@ const User = require('../models/user'),
 // and to get the user's information
 // We use the Auth.restrict to restrict it to only calls using the auth_token
 router.get('/validate', Auth.restrict, (req, res)=>{
-  console.log("inside get request")
+  console.log("inside get request to users/validate")
   res.json({
     name: req.user.name,
     email: req.user.email,

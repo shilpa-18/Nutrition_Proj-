@@ -17,11 +17,12 @@ const Auth = {
           next(); // move on to the next action
         })// if there is no user with that token
         .catch(err => {
+          console.log('err:', err);
           req.user = false; // set user to false
           next() // move on to the next action
         })
     } else { // if there is no token
-      req.user = false; // no user
+      req.user = null; // no user
       next(); // next action
     }
   },

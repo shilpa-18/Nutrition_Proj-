@@ -1,6 +1,7 @@
 require('dotenv').config(); // SUPPORT .ENV FILES
 const express = require('express'); // BRING IN EXPRESS
 const app = express(); // INITILIZE APP
+const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser'); 
 
@@ -11,7 +12,11 @@ const port = process.env.PORT || 3000; // INITIALIZE DEFAULT PORT OR PORT FROM E
 const logger = require('morgan'); // TERMINAL LOGGER: SHOWS THE ROUTE AND STATUS CODE FOR EVERY REQUEST
 const Auth = require('./services/auth');
 
+
+app.use(cors());
+
 // VIEW ENGINE SETUP
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -42,6 +47,7 @@ app.use('/api', require('./controllers/recipe_controller')); // RECIPES CONTROLL
 //     "test": "echo \"Error: no test specified\" && exit 1",
 //     "start": "node server.js"
 // },
+
   
 app.use('/users', require('./controllers/users_controller'));
 app.use('/login', require('./controllers/sessions_controller'));

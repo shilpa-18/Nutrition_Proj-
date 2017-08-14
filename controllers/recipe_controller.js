@@ -5,15 +5,17 @@ const router = express.Router();
 const Recipe = require('../models/recipe.js');
 
 router.get('/all', (req, res) => {
-	Recipe.get()
-		.then(recipes => res.json({ recipes }))
+	console.log('------------------------------------------');
+	console.log('in recipe_controller .get /all');
+	console.log('req.user:', req.user);
+	Recipe.recipesForUser(parseInt(req.user.id))
+		.then(recipes => {
+			console.log('recipes retrieved: ', recipes)
+			res.json({ recipes })
+		})
 		.catch(err => console.error(err));
 });
 
-// ROUTE FOR GETTING RECIPES BY USER
-// router.get('/users', (req, res) => {
-// 	res.render()
-// })
 
 router.post('/new', Recipe.useAPI) 
 

@@ -7,7 +7,7 @@ const Recipe = {};
 // INSERTS INTO DATABASE
 Recipe.create = (recipe) => {
 	return db.none(`INSERT into recipes(name, recipe_id, unit, protein, sugar, calories) 
-		VALUES($1, $2, $3, $4, $5, $6)`, [recipe.name, recipe.user_id, recipe.unit, recipe.protein, recipe.sugar, recipe.calories]);
+		VALUES($1, $2, $3, $4, $5, $6)`, [recipe.name, recipe.userId, recipe.unit, recipe.protein, recipe.sugar, recipe.calories]);
 }
 
 // RETURN RECIPES BY USER ID (RECIPE_)
@@ -17,25 +17,25 @@ Recipe.get = () => {
 	return db.any('SELECT * FROM recipes ORDER BY id DESC LIMIT 5');
 }
 
+Recipe.recipesForUser = (userId) => {
+	return db.any('SELECT * FROM recipes WHERE recipe_id = $1 ORDER BY id DESC LIMIT 5', [userId]);
+}
+
 // DELETE A RECIPE
 Recipe.delete = (id) => {
 	return db.one('DELETE FROM recipes WHERE id = $1', id);
 }
 
-// Recipe.post = (recipe) => {
-// 	return db.any(`INSERT INTO * FROM recipies(name, recipe_id, unit, protein, sugar, calories) 
-// 		VALUES($1, $2, $3, $4, $5, $6)`, [recipe.name, recipe.user_id, recipe.unit, recipe.protein, recipe.sugar, recipe.calories]);
-// }
 
 // useAPI
 Recipe.useAPI = (req, res) => {
 
-	//console.log(req.body);
+	console.log(req.body);
 
 	axios.get('https://api.edamam.com/api/nutrition-data', {
 		params: {
-			"app_id": "4560ff21",
-			"app_key": "093d305bc6f9cce6eee7f26c445670ea",
+			"app_id": process.env.EDAMAM_API_ID,
+			"app_key": process.env.EDAMAM_API_KEY,
 			"ingr": req.body.ingr
 		}
 	})
@@ -46,7 +46,7 @@ Recipe.useAPI = (req, res) => {
 			unit: response.data.totalNutrients.PROCNT.unit,
 			sugar: response.data.totalNutrients.SUGAR.quantity,
 			calories: response.data.calories,
-			user_id: req.body.user_id
+			userId: req.body.userId
 		};
 
 		Recipe.create(recipe)
