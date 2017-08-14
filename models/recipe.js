@@ -22,15 +22,20 @@ Recipe.delete = (id) => {
 	return db.one('DELETE FROM recipes WHERE id = $1', id);
 }
 
+// Recipe.post = (recipe) => {
+// 	return db.any(`INSERT INTO * FROM recipies(name, recipe_id, unit, protein, sugar, calories) 
+// 		VALUES($1, $2, $3, $4, $5, $6)`, [recipe.name, recipe.user_id, recipe.unit, recipe.protein, recipe.sugar, recipe.calories]);
+// }
+
 // useAPI
 Recipe.useAPI = (req, res) => {
 
 	//console.log(req.body);
 
-	axios.get('"https://api.edamam.com/api/nutrition-data?app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&ingr=1%20large%20apple"', {
+	axios.get('https://api.edamam.com/api/nutrition-data', {
 		params: {
-			"app_id": "EDDMAM_API-ID",
-			"app_key": "EDAMAM_API_KEY",
+			"app_id": "4560ff21",
+			"app_key": "093d305bc6f9cce6eee7f26c445670ea",
 			"ingr": req.body.ingr
 		}
 	})

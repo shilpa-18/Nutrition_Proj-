@@ -32,7 +32,8 @@ const User = {
             [name, email, password_digest, token])
         })
         .catch(err => {
-          console.log(err)
+          console.log('ERROR!!!!');
+          console.log(err);
         });
     }
 

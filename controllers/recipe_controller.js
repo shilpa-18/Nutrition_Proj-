@@ -11,6 +11,9 @@ router.get('/all', (req, res) => {
 });
 
 // ROUTE FOR GETTING RECIPES BY USER
+// router.get('/users', (req, res) => {
+// 	res.render()
+// })
 
 router.post('/new', Recipe.useAPI) 
 

@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "Building a Node/Express app following MVC design pattern using PostgreSQL",
   "main": "server.js",
-  "engines" : {
+  "engines": {
     "node": "6.9.5"   
-},
-
+  },
   "scripts": {
     "start": "nodemon server.js"
   },
-
   "license": "ISC",
   "author": "",
   "dependencies": {

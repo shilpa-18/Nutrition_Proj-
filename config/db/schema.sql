@@ -1,9 +1,7 @@
-DROP DATABASE IF EXISTS recipe_app;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS recipes;
-CREATE DATABASE recipe_app;
 
-\c recipe_app;
+-- \c recipe_app;
 
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,

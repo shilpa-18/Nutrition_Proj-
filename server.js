@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const http = require('http'); // CORE MODULE, USED TO CREATE THE HTTP SERVER
 const server = http.createServer(app); // CREATE HTTP SERVER USING APP
-const PORT = process.env.PORT || 3000; // INITIALIZE DEFAULT PORT OR PORT FROM ENVIRONMENT VARIABLE
+const port = process.env.PORT || 3000; // INITIALIZE DEFAULT PORT OR PORT FROM ENVIRONMENT VARIABLE
 
 const logger = require('morgan'); // TERMINAL LOGGER: SHOWS THE ROUTE AND STATUS CODE FOR EVERY REQUEST
 const Auth = require('./services/auth');
@@ -38,10 +38,10 @@ app.use(Auth.authenticate);
 app.use('/api', require('./controllers/recipe_controller')); // RECIPES CONTROLLER
 
 // set up base routes
-"scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
+// "scripts": {
+//     "test": "echo \"Error: no test specified\" && exit 1",
+//     "start": "node server.js"
+// },
   
 app.use('/users', require('./controllers/users_controller'));
 app.use('/login', require('./controllers/sessions_controller'));

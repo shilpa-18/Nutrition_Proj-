@@ -17,6 +17,7 @@ router.get('/validate', Auth.restrict, (req, res)=>{
 })
 
 router.post('/', (req, res) => {
+  console.log('in post to / route of users_controller.js')
   const email = req.body.email.toLowerCase();
   // this is an easier way of doing:
   // const name = req.body.name,
