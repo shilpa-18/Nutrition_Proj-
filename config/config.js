@@ -11,7 +11,7 @@ const options = {
 const pgp = require('pg-promise')(options);
 
 // SET UP THE CONNECTION STRING FOR THE DATABASE
-const connectionString = process.env.DATABASE_URL ||'postgres://shilpaaradhya@localhost:5432/recipe_app'
-const db = pgp(connectionString);
+var db = pgp(process.env.DATABASE_URL || 'postgres://shilpaaradhya@localhost:5432/recipe_app');
+
 
 module.exports = db;
