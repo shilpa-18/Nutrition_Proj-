@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const http = require('http'); // CORE MODULE, USED TO CREATE THE HTTP SERVER
 const server = http.createServer(app); // CREATE HTTP SERVER USING APP
-const port = process.env.PORT || 3000; // INITIALIZE DEFAULT PORT OR PORT FROM ENVIRONMENT VARIABLE
+const PORT = process.argv[2] || process.env.PORT || 3001; // INITIALIZE DEFAULT PORT OR PORT FROM ENVIRONMENT VARIABLE
 
 const logger = require('morgan'); // TERMINAL LOGGER: SHOWS THE ROUTE AND STATUS CODE FOR EVERY REQUEST
 const Auth = require('./services/auth');
@@ -62,10 +62,10 @@ app.get('/', (req, res, next) => {
 */
 
 // SET THE PORT
-app.set('port', port);
+app.set('port', PORT);
 
 // LISTEN ON SPECIFIED PORT
-server.listen(port);
+server.listen(PORT);
 
 // LOG WHICH PORT THE SERVER IS RUNNING ON
 console.log('Server listening on port ' + port);
