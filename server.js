@@ -54,7 +54,9 @@ app.use('/login', require('./controllers/sessions_controller'));
 
 
 app.get('/', (req, res, next) => {
-	res.send('Hello World');
+	res.json({
+		"data": "Hello World"	
+	});
 })
 
 /*
